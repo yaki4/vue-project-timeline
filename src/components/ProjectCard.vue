@@ -18,14 +18,6 @@
               <img class="mot__image" :src='medias.url' />
             </div>
             <div v-else-if="medias.__typename === 'MetaVideoBaseQuery' || medias.__typename === 'RadioDiffusionBaseQuery'">
-              <!-- <plyr>
-                <video v-if="medias.__typename === 'MetaVideoBaseQuery'">
-                  <source :src='medias.url' type='video/mp4' />
-                </video>
-                <audio v-else-if="medias.__typename === 'RadioDiffusionBaseQuery'">
-                  <source :src='medias.url' type='video/mp3' />
-                </audio>
-              </plyr> -->
             </div>
           </div>
         </div>
