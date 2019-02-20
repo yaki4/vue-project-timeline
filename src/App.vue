@@ -48,7 +48,6 @@
 
   export default {
     name: 'VueProjectTimeline',
-
     components: {
       ProjectCard, ConfigError
     },
@@ -76,18 +75,96 @@
         required: false,
         default: '#FFEDCB',
         type: String
-      },
-
-      projects: {
-        required: true,
-        type: Array
       }
+
+      // projects: {
+      //   required: true,
+      //   type: Array
+      // },
+
+      // order: {
+      //   required: false,
+      //   default: 'asc',
+      //   type: String
+      // }
     },
 
     data () {
       return {
         selectedProject: 0,
-        scrollLocked: false
+        scrollLocked: false,
+        order: 'desc',
+        projects: [  {
+          title: 'Client one',
+          subtitle: 'Developer',
+          description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+          image: `logo.png`,
+          startYear: 2016,
+          endYear: 2017,
+          color: '#4a63e0',
+          medias: []
+        }, {
+          title: 'Client two',
+          subtitle: 'Developer',
+          description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+          image: `logo.png`,
+          startYear: 2015,
+          endYear: 2015,
+          color: '#4a63e0',
+          medias: [{id: 'test'}, {id: 'test'}, {id: 'dew'}]
+        },
+        {
+          title: 'Client three',
+          subtitle: 'Developer',
+          description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+          image: `logo.png`,
+          startYear: 2014,
+          endYear: 2018,
+          medias: []
+        },        {
+          title: 'Client four',
+          subtitle: 'Developer',
+          description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+          image: `logo.png`,
+          startYear: 2015,
+          endYear: 2017,
+          medias: []
+        },
+        {
+          title: 'Client five',
+          subtitle: 'Developer',
+          description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                      quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                      cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                      proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+          image: `logo.png`,
+          startYear: 2017,
+          endYear: 2017,
+          medias: []
+        }
+        ]
       }
     },
 
@@ -102,8 +179,7 @@
           }
           return project
         })
-
-        return projects.sort((a, b) => {
+        let temp = projects.sort((a, b) => {
           if (a.endYear > b.endYear) {
             return -1;
           }
@@ -112,6 +188,15 @@
           }
           return 0;
         })
+        if (this.order === 'asc') {
+          return temp
+        } else {
+          let fin = []
+          for (let i = temp.length - 1; i >= 0; i--) {
+            fin.push(temp[i])
+          }
+          return fin
+        }
       },
 
       invalidProjects () {
@@ -153,18 +238,28 @@
         let timelines = []
 
         this.sortedProjects.forEach((project, index) => {
-          this.addToTimeline(project.endYear, index, timelines)
+          if (this.order === 'asc') {
+            this.addToTimeline(project.endYear, index, timelines)
+          } else {
+            this.addToTimeline(project.startYear, index, timelines)
+          }
         })
-
         return timelines
       },
 
       timelineYears () {
         let timelineYears = []
 
-        for (let i = this.endYear; i >= this.startYear; i--) {
-          timelineYears.push(i)
-          if (i !== this.startYear) timelineYears.push(null)
+        if (this.order === 'asc') {
+          for (let i = this.endYear; i >= this.startYear; i--) {
+            timelineYears.push(i)
+            if (i !== this.startYear) timelineYears.push(null)
+          }
+        } else {
+          for (let i = this.startYear; i <= this.endYear; i++) {
+            timelineYears.push(i)
+            if (i !== this.endYear) timelineYears.push(null)
+          }
         }
 
         return timelineYears
@@ -177,10 +272,16 @@
           timelines[timelineIndex] = [projectIndex]
           return timelines
         }
-
-        if (projectEndYear < this.sortedProjects[timelines[timelineIndex][timelines[timelineIndex].length -1]].startYear) {
-          timelines[timelineIndex].push(projectIndex)
-          return timelines
+        if (this.order === 'asc') {
+          if (projectEndYear < this.sortedProjects[timelines[timelineIndex][timelines[timelineIndex].length -1]].startYear) {
+            timelines[timelineIndex].push(projectIndex)
+            return timelines
+          }
+        } else {
+          if (projectEndYear > this.sortedProjects[timelines[timelineIndex][timelines[timelineIndex].length -1]].endYear) {
+            timelines[timelineIndex].push(projectIndex)
+            return timelines
+          }
         }
 
         this.addToTimeline(projectEndYear, projectIndex, timelines, timelineIndex + 1)
@@ -191,10 +292,20 @@
       },
 
       getProjectSpacing (timeline, key) {
-        if (key === 0) {
-          return (this.endYear - this.sortedProjects[timeline[key]].endYear) * 2
+        if (this.order === 'asc') {
+          if (key === 0) {
+            return (this.endYear - this.sortedProjects[timeline[key]].endYear) * 2
+          } else {
+            return (this.sortedProjects[timeline[key - 1]].startYear - this.sortedProjects[timeline[key]].endYear) * 2 - 1
+          }
+        } else {
+          if (key === 0) {
+            return (this.sortedProjects[timeline[key]].startYear - this.startYear) * 2
+          } else {
+            return (this.sortedProjects[timeline[key]].startYear - this.sortedProjects[timeline[key - 1]].endYear) + 1
+          }
         }
-        return (this.sortedProjects[timeline[key - 1]].startYear - this.sortedProjects[timeline[key]].endYear) * 2 - 1
+
       },
 
       getTimelineElementStyle (projectId) {

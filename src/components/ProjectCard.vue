@@ -6,9 +6,29 @@
       </div>
       <div class="ptl1-flex ptl1-flex-col">
         <h1 class="ptl1-leading-none" :class="{ 'ptl1-text-white' : selected }">{{ project.title }}</h1>
-        <h2 :class="{ 'ptl1-text-white' : selected }">{{ project.subtitle }}</h2>
+        <h2 :class="{ 'ptl1-text-white' : selected }">{{ project.subtitle }} {{projectYears}}</h2>
         <h3 class="ptl1-block sm:ptl1-hidden mt-1" :class="{ 'ptl1-text-white' : selected }" v-text="projectYears"></h3>
         <p class="ptl1-hidden sm:ptl1-block ptl1-text-white" v-show="selected" v-html="project.description"></p>
+        <div class="ptl1-hidden sm:ptl1-block ptl1-text-white" v-show="selected"> 
+          <div v-for='(medias, index) in project.medias' :key='index'>
+            <div v-if="medias.__typename === 'HypeAnimationBaseQuery' || medias.__typename === 'MetaIframeBaseQuery'">
+              <iframe class="iframe__mot_container" :src='medias.url' width="100%" height="100%" target="_self" />
+            </div>
+            <div v-else-if="medias.__typename === 'MetaImageBaseQuery'">
+              <img class="mot__image" :src='medias.url' />
+            </div>
+            <div v-else-if="medias.__typename === 'MetaVideoBaseQuery' || medias.__typename === 'RadioDiffusionBaseQuery'">
+              <plyr>
+                <video v-if="medias.__typename === 'MetaVideoBaseQuery'">
+                  <source :src='medias.url' type='video/mp4' />
+                </video>
+                <audio v-else-if="medias.__typename === 'RadioDiffusionBaseQuery'">
+                  <source :src='medias.url' type='video/mp3' />
+                </audio>
+              </plyr>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div class="ptl1-flex sm:ptl1-hidden ptl1-px-4">
