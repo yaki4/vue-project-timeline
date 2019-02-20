@@ -35,6 +35,7 @@ You can pass the following props to the Vue Project-timeline component:
 | selectedBgColor | The background color of the selected project card | String | N | #F7B93A |
 | hoverBgColor | The background color of a hovered project card | String | N | #FFEDCB |
 | projects | The projects to display on the timeline (explained below) | Array | Y | - |
+| order | Order you wish the project is display (desc or asc) | String | N | asc |
 
 ### Projects syntax
 The `projects` prop expects an Array of Objects. Each object can have the following keys:
