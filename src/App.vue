@@ -75,18 +75,18 @@
         required: false,
         default: '#FFEDCB',
         type: String
+      },
+
+      projects: {
+        required: true,
+        type: Array
+      },
+
+      order: {
+        required: false,
+        default: 'asc',
+        type: String
       }
-
-      // projects: {
-      //   required: true,
-      //   type: Array
-      // },
-
-      // order: {
-      //   required: false,
-      //   default: 'asc',
-      //   type: String
-      // }
     },
 
     data () {

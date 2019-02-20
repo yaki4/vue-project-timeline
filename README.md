@@ -1,6 +1,9 @@
 # Vue Project-timeline
 ![npm(scoped)](https://img.shields.io/npm/v/@gerwinov/vue-project-timeline.svg) ![npm](https://img.shields.io/npm/dt/@gerwinov/vue-project-timeline.svg) ![Github](https://img.shields.io/github/license/mashape/apistatus.svg)
 
+## Anouncement
+Fork of vue-project-timeline by @gerwinov. I've add custom order and more data in selected content
+
 ## Installation
 ```bash
 npm install @gerwinov/vue-project-timeline --save
