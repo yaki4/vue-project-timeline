@@ -2,19 +2,19 @@
   <div id="vue-project-timeline">
     <div v-if="projects">
       <div class="ptl1-flex" v-if="invalidProjects.length === 0">
-        <div class="ptl1-hidden sm:ptl1-flex sm:ptl1-w-1/2 md:ptl1-w-1/4 ptl1-justify-end sm:ptl1-pr-4" :style="{ backgroundColor: timelineBgColor }" @click="clickOn()" @mouseleave="hoverOff()">
-          <div class="ptl1-flex ptl1-flex-col ptl1-border-r-2 ptl1-py-4" :style="{ borderColor: timelineColor }">
+        <div class="ptl1-hidden sm:ptl1-flex sm:ptl1-w-1/2 md:ptl1-w-1/4 ptl1-justify-end sm:ptl1-pr-4 vt-timeline" :style="{ backgroundColor: timelineBgColor }" @click="clickOn()" @mouseleave="hoverOff()">
+          <div class="ptl1-flex ptl1-flex-col ptl1-border-r-2 ptl1-py-4 vt-years-wrapper" :style="{ borderColor: timelineColor }">
             <div class="ptl1-flex ptl1-text-white ptl1-pr-2 ptl1-h-10 ptl1-items-center" :key="'y' + key" v-for="(year, key) in timelineYears">
-              <h3 class="ptl1-font-normal">{{ year }}</h3>
+              <h3 class="ptl1-font-normal vt-year-title">{{ year }}</h3>
             </div>
           </div>
-          <div class="ptl1-flex ptl1-flex-col ptl1-py-4" :key="'t' + key" v-for="(timeline, key) in timelines">
+          <div class="ptl1-flex ptl1-flex-col ptl1-py-4 vt-timelines-wrapper" :key="'t' + key" v-for="(timeline, key) in timelines">
             <div class="ptl1-ml-4" :key="'p' + key" v-for="(projectId, key) in timeline">
-              <div class="ptl1-h-10" :key="'n' + key" v-for="(n, key) in getProjectSpacing(timeline, key)"></div>
+              <div class="ptl1-h-10 vt-timeline-spacer" :key="'n' + key" v-for="(n, key) in getProjectSpacing(timeline, key)"></div>
               <div
-                class="ptl1-h-10 ptl1-w-3 ptl1-cursor-pointer ptl1-bg-white ptl1-opacity-50"
+                class="ptl1-h-10 ptl1-w-3 ptl1-cursor-pointer ptl1-bg-white ptl1-opacity-50 vt-timeline-line"
                 :style="getTimelineElementStyle(projectId)"
-                :class="{ 'ptl1-shadow-md ptl1-opacity-100' : selectedProject === projectId }"
+                :class="{ 'ptl1-shadow-md ptl1-opacity-100 vt-selected-line' : selectedProject === projectId }"
                 :key="'py' + key"
                 v-for="(n, key) in getProjectYears(projectId)"
                 @click.stop="selectedProject = projectId">
@@ -55,44 +55,88 @@
     props: {
       timelineColor: {
         required: false,
-        default: '#979797',
+        default: '#ffcb3b',
         type: String
       },
 
       timelineBgColor: {
         required: false,
-        default: '#99B0A8',
+        default: '#fc5f54',
         type: String
       },
 
       selectedBgColor: {
         required: false,
-        default: '#F7B93A',
+        default: '#fc5f54',
         type: String
       },
 
       hoverBgColor: {
         required: false,
-        default: '#FFEDCB',
+        default: '#feebd8',
         type: String
       },
 
-      projects: {
-        required: true,
-        type: Array
-      },
-
-      order: {
-        required: false,
-        default: 'asc',
-        type: String
-      }
+      // projects: {
+      //   required: true,
+      //   type: Array
+      // },
+      //
+      // order: {
+      //   required: false,
+      //   default: 'asc',
+      //   type: String
+      // }
     },
 
     data () {
       return {
         selectedProject: 0,
-        scrollLocked: false
+        scrollLocked: false,
+        projects: [
+          {
+            title: 'Client one',
+            subtitle: 'Developer',
+            description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+            image: `logo.png`,
+            startYear: 2014,
+            endYear: 2017,
+            color: '#4a63e0'
+          },
+          {
+            title: 'Client two',
+            subtitle: 'Developer',
+            description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+            image: `logo.png`,
+            startYear: 2014,
+            endYear: 2015,
+            color: '#4a63e0'
+          },
+          {
+            title: 'Client three',
+            subtitle: 'Developer',
+            description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                         quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                         consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+            image: `logo.png`,
+            startYear: 2016,
+            endYear: 2016,
+            color: '#4a63e0'
+          }
+        ]
       }
     },
 

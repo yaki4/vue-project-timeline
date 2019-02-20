@@ -1,15 +1,15 @@
 <template>
-  <div class="ptl1-flex ptl1-flex-col ptl1-cursor-pointer" :style="{ backgroundColor: bgColor }" ref="card" @click="$emit('selected')" @mouseenter="hovering = true" @mouseleave="hovering = false">
-    <div class="ptl1-flex ptl1-flex-row ptl1-max-w-md ptl1-overflow-hidden ptl1-px-6 ptl1-my-6">
-      <div class="ptl1-flex-none ptl1-w-16 ptl1-mr-4">
-        <img alt="project logo" :src="project.image" v-if="project.image">
+  <div class="ptl1-flex ptl1-flex-col ptl1-cursor-pointer vt-content" :style="{ backgroundColor: bgColor }" ref="card" @click="$emit('selected')" @mouseenter="hovering = true" @mouseleave="hovering = false">
+    <div class="ptl1-flex ptl1-flex-row ptl1-max-w-md ptl1-overflow-hidden ptl1-px-6 ptl1-my-6 vt-content-wrapper">
+      <div class="ptl1-flex-none ptl1-w-16 ptl1-mr-4 vt-logo-wrapper">
+        <img alt="project logo vt-logo" :src="project.image" v-if="project.image">
       </div>
-      <div class="ptl1-flex ptl1-flex-col">
-        <h1 class="ptl1-leading-none" :class="{ 'ptl1-text-white' : selected }">{{ project.title }}</h1>
-        <h2 :class="{ 'ptl1-text-white' : selected }">{{ project.subtitle }} {{projectYears}}</h2>
+      <div class="ptl1-flex ptl1-flex-col vt-main-content">
+        <h1 class="ptl1-leading-none vt-title" :class="{ 'ptl1-text-white' : selected }">{{ project.title }}</h1>
+        <h2 :class="{ 'ptl1-text-white vt-dates' : selected }">{{ project.subtitle }} {{projectYears}}</h2>
         <h3 class="ptl1-block sm:ptl1-hidden mt-1" :class="{ 'ptl1-text-white' : selected }" v-text="projectYears"></h3>
-        <p class="ptl1-hidden sm:ptl1-block ptl1-text-white" v-show="selected" v-html="project.description"></p>
-        <div class="ptl1-hidden sm:ptl1-block ptl1-text-white" v-show="selected"> 
+        <p class="ptl1-hidden sm:ptl1-block ptl1-text-white vt-description" v-show="selected" v-html="project.description"></p>
+        <div class="ptl1-hidden sm:ptl1-block ptl1-text-white vt-content" v-show="selected">
           <div v-for='(medias, index) in project.medias' :key='index'>
             <div v-if="medias.__typename === 'HypeAnimationBaseQuery' || medias.__typename === 'MetaIframeBaseQuery'">
               <iframe class="iframe__mot_container" :src='medias.url' width="100%" height="100%" target="_self" />
