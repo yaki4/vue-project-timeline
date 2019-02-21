@@ -5,12 +5,15 @@
         <img alt="project logo vt-logo" :src="project.image" v-if="project.image">
       </div>
       <div class="ptl1-flex ptl1-flex-col vt-main-content">
-        <h1 class="ptl1-leading-none vt-title" :class="{ 'ptl1-text-white' : selected }">{{ project.title }}</h1>
+        <div class="title-wrapper">
+          <h1 class="ptl1-leading-none vt-title" :class="{ 'ptl1-text-white selected-title' : selected }">{{ project.title }}</h1>
+          <a class="vt-goto-button" :class="{ 'selected-button' : selected }" data--icon="open_in_new" @click='goMot(project.title)'/>
+        </div>
         <h2 class='vt-dates' :class="{ 'ptl1-text-white' : selected }">{{ project.subtitle }} {{projectYears}}</h2>
         <h3 class="ptl1-block sm:ptl1-hidden mt-1" :class="{ 'ptl1-text-white' : selected }" v-text="projectYears"></h3>
         <p class="ptl1-hidden sm:ptl1-block ptl1-text-white vt-description" v-show="selected" v-html="project.description"></p>
         <div class="ptl1-hidden sm:ptl1-block ptl1-text-white vt-content" v-show="selected">
-          <a data--icon="open_in_new" @click='goMot(project.title)'/>
+
           <div v-for='(medias, index) in project.medias' :key='index'>
             <div v-if="medias.__typename === 'HypeAnimationBaseQuery' || medias.__typename === 'MetaIframeBaseQuery'">
               <iframe class="iframe__mot_container" :src='medias.url' width="100%" height="100%" target="_self" />
