@@ -1,12 +1,12 @@
 <template>
-  <div class="ptl1-flex ptl1-flex-col ptl1-cursor-pointer vt-content" :class="{'hover-content' : hovering, 'selected-content' : selected}" :style="{ backgroundColor: bgColor }" ref="card" @click="$emit('selected')" @mouseenter="hovering = true" @mouseleave="hovering = false">
+  <div class="ptl1-flex ptl1-flex-col ptl1-cursor-pointer vt-content" :class="{'hover-content' : hovering, 'selected-content' : selected}" :style="{ backgroundColor: bgColor }" ref="card" @click="$emit('selected')" @mouseenter="hoverElement()" @mouseleave="exitElement()">
     <div class="ptl1-flex ptl1-flex-row ptl1-max-w-md ptl1-overflow-hidden ptl1-px-6 ptl1-my-6 vt-content-wrapper">
       <div class="ptl1-flex-none ptl1-w-16 ptl1-mr-4 vt-logo-wrapper">
         <img alt="project logo vt-logo" :src="project.image" v-if="project.image">
       </div>
       <div class="ptl1-flex ptl1-flex-col vt-main-content">
         <h1 class="ptl1-leading-none vt-title" :class="{ 'ptl1-text-white' : selected }">{{ project.title }}</h1>
-        <h2 :class="{ 'ptl1-text-white vt-dates' : selected }">{{ project.subtitle }} {{projectYears}}</h2>
+        <h2 class='vt-dates' :class="{ 'ptl1-text-white' : selected }">{{ project.subtitle }} {{projectYears}}</h2>
         <h3 class="ptl1-block sm:ptl1-hidden mt-1" :class="{ 'ptl1-text-white' : selected }" v-text="projectYears"></h3>
         <p class="ptl1-hidden sm:ptl1-block ptl1-text-white vt-description" v-show="selected" v-html="project.description"></p>
         <div class="ptl1-hidden sm:ptl1-block ptl1-text-white vt-content" v-show="selected">
@@ -85,6 +85,16 @@
         el: this.$refs.card,
         property: 'height'
       })
+    },
+    methods: {
+      hoverElement () {
+        this.hovering = true
+        this.$emit('hoverElement')
+      },
+      exitElement () {
+        this.hovering = false
+        this.$emit('exitElement')
+      }
     }
   }
 </script>
