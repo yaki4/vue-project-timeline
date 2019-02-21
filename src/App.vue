@@ -30,7 +30,9 @@
             :hoverBgColor="hoverBgColor"
             :key="'pc' + key"
             v-for="(project, key) in sortedProjects"
-            @selected="selectedProject = key">
+            @selected="selectedProject === key ? selectedProject = null : selectedProject = key"
+            @goMot="goMot"
+            >
           </project-card>
         </div>
       </div>
@@ -240,6 +242,9 @@
     },
 
     methods: {
+      goMot (mot) {
+        this.$emit('goMot', mot)
+      },
       addToTimeline (projectEndYear, projectIndex, timelines, timelineIndex = 0) {
         if (!Array.isArray(timelines[timelineIndex])) {
           timelines[timelineIndex] = [projectIndex]
