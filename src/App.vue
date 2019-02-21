@@ -37,7 +37,7 @@
         </div>
       </div>
       <config-error :invalidProjects="invalidProjects" v-else></config-error>
-      <button @click="order === 'asc' ? order = 'desc' : order = 'asc'"> ORDER </button>
+      <!-- <button @click="order === 'asc' ? order = 'desc' : order = 'asc'"> ORDER </button> -->
     </div>
     <div v-else>
       <p>No projects provided. Please see <a href="https://github.com/gerwinov/vue-project-timeline">the docs</a> for required config.</p>
