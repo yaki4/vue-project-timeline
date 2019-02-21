@@ -37,6 +37,7 @@
         </div>
       </div>
       <config-error :invalidProjects="invalidProjects" v-else></config-error>
+      <button @click="order === 'asc' ? order = 'desc' : order = 'asc'"> ORDER </button>
     </div>
     <div v-else>
       <p>No projects provided. Please see <a href="https://github.com/gerwinov/vue-project-timeline">the docs</a> for required config.</p>
@@ -87,7 +88,7 @@
 
       order: {
         required: false,
-        default: 'asc',
+        default: 'desc',
         type: String
       }
     },
@@ -96,49 +97,64 @@
       return {
         selectedProject: 0,
         scrollLocked: false
+        // order: 'asc',
         // projects: [
-        //   {
-        //     title: 'Client one',
-        //     subtitle: 'Developer',
-        //     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        //                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        //                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        //                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        //                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        //                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-        //     image: `logo.png`,
-        //     startYear: 2014,
-        //     endYear: 2017,
-        //     color: '#4a63e0'
-        //   },
-        //   {
-        //     title: 'Client two',
-        //     subtitle: 'Developer',
-        //     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        //                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        //                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        //                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        //                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        //                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-        //     image: `logo.png`,
-        //     startYear: 2014,
-        //     endYear: 2015,
-        //     color: '#4a63e0'
-        //   },
-        //   {
-        //     title: 'Client three',
-        //     subtitle: 'Developer',
-        //     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        //                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        //                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        //                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        //                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-        //                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-        //     image: `logo.png`,
-        //     startYear: 2016,
-        //     endYear: 2016,
-        //     color: '#4a63e0'
-        //   }
+          // {
+          //   title: 'Client one',
+          //   subtitle: 'Developer',
+          //   description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          //                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          //                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          //                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          //                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          //                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+          //   image: `logo.png`,
+          //   startYear: 1970,
+          //   endYear: 1970,
+          //   color: '#4a63e0'
+          // },
+          // {
+          //   title: 'Client two',
+          //   subtitle: 'Developer',
+          //   description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          //                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          //                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          //                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          //                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          //                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+          //   image: `logo.png`,
+          //   startYear: 1970,
+          //   endYear: 1975,
+          //   color: '#4a63e0'
+          // },
+          // {
+          //   title: 'Client three',
+          //   subtitle: 'Developer',
+          //   description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          //                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          //                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          //                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          //                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          //                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+          //   image: `logo.png`,
+          //   startYear: 1979,
+          //   endYear: 1985,
+          //   color: '#4a63e0'
+          // }
+          // {
+          //   title: 'Client four',
+          //   subtitle: 'Developer',
+          //   description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          //                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          //                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          //                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          //                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+          //                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+          //   image: `logo.png`,
+          //   startYear: 1975,
+          //   endYear: 1979,
+          //   color: '#4a63e0'
+          // }
         // ]
       }
     },
@@ -278,9 +294,12 @@
           }
         } else {
           if (key === 0) {
+            // console.log(this.sortedProjects[timeline[key]].startYear)
             return (this.sortedProjects[timeline[key]].startYear - this.startYear) * 2
           } else {
-            return (this.sortedProjects[timeline[key]].startYear - this.sortedProjects[timeline[key - 1]].endYear) + 1
+            // console.log(this.sortedProjects[timeline[key]].startYear)
+            // console.log((this.sortedProjects[timeline[key]].startYear - this.sortedProjects[timeline[key - 1]].endYear) + 1)
+            return (this.sortedProjects[timeline[key]].startYear - this.sortedProjects[timeline[key - 1]].endYear) * 2 - 1
           }
         }
 
