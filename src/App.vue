@@ -17,7 +17,7 @@
                 :class="{ 'ptl1-shadow-md ptl1-opacity-100 vt-selected-line' : selectedProject === projectId }"
                 :key="'py' + key"
                 v-for="(n, key) in getProjectYears(projectId)"
-                @click.stop="selectedProject = projectId">
+                @click.stop=" selectedProject === projectId ? selectedProject = null : selectedProject = projectId">
               </div>
             </div>
           </div>
