@@ -1,5 +1,5 @@
 <template>
-  <div class="ptl1-flex ptl1-flex-col ptl1-cursor-pointer vt-content" :style="{ backgroundColor: bgColor }" ref="card" @click="$emit('selected')" @mouseenter="hovering = true" @mouseleave="hovering = false">
+  <div class="ptl1-flex ptl1-flex-col ptl1-cursor-pointer vt-content" :class="{'hover-content' : hovering, 'selected-content' : selected}" :style="{ backgroundColor: bgColor }" ref="card" @click="$emit('selected')" @mouseenter="hovering = true" @mouseleave="hovering = false">
     <div class="ptl1-flex ptl1-flex-row ptl1-max-w-md ptl1-overflow-hidden ptl1-px-6 ptl1-my-6 vt-content-wrapper">
       <div class="ptl1-flex-none ptl1-w-16 ptl1-mr-4 vt-logo-wrapper">
         <img alt="project logo vt-logo" :src="project.image" v-if="project.image">
