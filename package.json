@@ -3,7 +3,7 @@
   "description": "Vertical timeline to display projects using vue",
   "author": "gerwinov <gerwinov@tuta.io>",
   "homepage": "https://github.com/yaki4/vue-project-timeline",
-  "version": "0.3.15",
+  "version": "0.3.17",
   "license": "MIT",
   "main": "dist/VueProjectTimeline.umd.js",
   "module": "dist/VueProjectTimeline.esm.js",

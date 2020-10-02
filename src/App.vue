@@ -1,6 +1,7 @@
 <template>
   <div id="vue-project-timeline">
     <div v-if="projects">
+      <!-- <button> allo </button> -->
       <div class="ptl1-flex vue-project-timeline-wrapper" v-if="invalidProjects.length === 0">
         <div class="ptl1-hidden sm:ptl1-flex sm:ptl1-w-1/2 md:ptl1-w-1/4 ptl1-justify-end sm:ptl1-pr-4 vt-timeline" :style="{ backgroundColor: timelineBgColor }" @click="clickOn()" @mouseleave="hoverOff()">
           <div class="ptl1-flex ptl1-flex-col ptl1-border-r-2 ptl1-py-4 vt-years-wrapper" :style="{ borderColor: timelineColor }">
@@ -99,62 +100,62 @@
         scrollLocked: false
         // order: 'asc',
         // projects: [
-          // {
-          //   title: 'Client one',
-          //   subtitle: 'Developer',
-          //   description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          //                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          //                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          //                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          //                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          //                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-          //   image: `logo.png`,
-          //   startYear: 1970,
-          //   endYear: 1970,
-          //   color: '#4a63e0'
-          // },
-          // {
-          //   title: 'Client two',
-          //   subtitle: 'Developer',
-          //   description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          //                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          //                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          //                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          //                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          //                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-          //   image: `logo.png`,
-          //   startYear: 1970,
-          //   endYear: 1975,
-          //   color: '#4a63e0'
-          // },
-          // {
-          //   title: 'Client three',
-          //   subtitle: 'Developer',
-          //   description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          //                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          //                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          //                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          //                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          //                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-          //   image: `logo.png`,
-          //   startYear: 1979,
-          //   endYear: 1985,
-          //   color: '#4a63e0'
-          // }
-          // {
-          //   title: 'Client four',
-          //   subtitle: 'Developer',
-          //   description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          //                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          //                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          //                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          //                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          //                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
-          //   image: `logo.png`,
-          //   startYear: 1975,
-          //   endYear: 1979,
-          //   color: '#4a63e0'
-          // }
+        //   {
+        //     title: 'Client one',
+        //     subtitle: 'Developer',
+        //     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        //                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        //                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        //                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        //                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        //                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        //     image: `logo.png`,
+        //     startYear: 1970,
+        //     endYear: 1970,
+        //     color: '#4a63e0'
+        //   },
+        //   {
+        //     title: 'Client two',
+        //     subtitle: 'Developer',
+        //     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        //                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        //                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        //                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        //                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        //                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        //     image: `logo.png`,
+        //     startYear: 1970,
+        //     endYear: 1975,
+        //     color: '#4a63e0'
+        //   },
+        //   {
+        //     title: 'Client three',
+        //     subtitle: 'Developer',
+        //     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        //                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        //                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        //                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        //                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        //                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        //     image: `logo.png`,
+        //     startYear: 1979,
+        //     endYear: 1985,
+        //     color: '#4a63e0'
+        //   },
+        //   {
+        //     title: 'Client four',
+        //     subtitle: 'Developer',
+        //     description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        //                  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        //                  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        //                  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        //                  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+        //                  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+        //     image: `logo.png`,
+        //     startYear: 1975,
+        //     endYear: 1979,
+        //     color: '#4a63e0'
+        //   }
         // ]
       }
     },
